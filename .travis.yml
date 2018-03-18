@@ -1,4 +1,11 @@
 language: node_js
 node_js: node
 services:
-    - mongodb
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: OmOjXYgLHL10bzk1Xjjmg+27CWEYBvxx3SIFx8Of1Sb1iriR9INILV+cvrRTYnqLNsqActCq1NTn40OLpfFpTg/sAViPhaodzdlB+vZBZVLXc4CfoKDk54gXsRFhL+tEXaOW2rs6wTrFQhCAbF7FlDBMXjnmXWEtjJ6zWCzxIiOzQX7ISpu6zpnSsFZGHU3X3scOAmCABXFS8AzFxBe/OoCGMd5mn6p7qdKsENJ2059nDS2KMRa9xtRn5AUIKfQWl9r751PfRNEeEm/CXBwRO9gMB2Z1SECqZ9z8eb5FhVFYTSQpbeH5VA+yl3tB41csskwAHa31obUlX4M/1H3WNsCJuhX5ne4I0uJYvMACRmWDV4iMgeb1GxFzw4Br60bhCa7hDjgYVxFYkRm9A9OI/XZogozFiHKmq0dk6KS3sA14I1Ic77r1wLYZF3OYb30R4DQS7bQByISnDgljfPLg/TekbaxyWRqB89ETNHoIkYPSDMq6F+KxFMWf/uQaDjklyMwqjPBLZunMIk6tIPDEz9CDagnpwNGibmg3pUKGljt+OPgSDV3B+rWntg0h62n5eK9dwesPYPxFEuyTWzRbrHgrKzKWOqkkp3nNtT3jV9T1jv6s/W6JvwSkT4lV+P1hk1uzi1EPO6AbR0hieh+Ebb1x3fkLp3t4b/IQnkaU284=
+  app: mighty-taiga-90294
+  on:
+    repo: laurajodz/mood-app-api
