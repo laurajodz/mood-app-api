@@ -7,6 +7,9 @@ const app = express();
 const {PORT, DATABASE_URL} = require('./config');
 const {Moods} = require('./models');
 
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
+
 mongoose.Promise = global.Promise;
 
 app.use(
@@ -26,7 +29,7 @@ let server;
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, {useMongoClient: true}, err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
