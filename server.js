@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const {CLIENT_ORIGIN} = require('./config');
 const app = express();
 
-const PORT = process.env.PORT || 8080;
 const {PORT, DATABASE_URL} = require('./config');
 const {Moods} = require('./models');
 
