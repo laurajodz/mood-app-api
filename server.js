@@ -49,12 +49,6 @@ app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });
 });
 
-// app.get('/api/protected', jwtAuth, (req, res) => {
-//   return res.json({
-//     data: 'rosebud'
-//   });
-// });
-
 app.get('/api/entries', (req, res) => {
     Moods
       .find()
@@ -104,6 +98,13 @@ app.put('/api/entries/:id', jsonParser, (req, res) => {
         .findByIdAndUpdate(req.params.id, {$set: toUpdate})
         .then(mood => res.status(204).end())
         .catch(error => res.status(500).json({message: 'Internal server error on put entry'}));
+});
+
+
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'rosebud'
+  });
 });
 
 app.get('/api/*', (req, res) => {
