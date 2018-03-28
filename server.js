@@ -58,9 +58,10 @@ app.get('/api/entries', (req, res) => {
 });
 
 app.post('/api/entries', (req, res) => {
+    console.log(req.body);
     Moods
         .create({
-            date: req.body.date,
+            date: req.body.date || Date.now(),
             mood: req.body.mood,
             moodTypes: req.body.moodTypes,
             sleep: req.body.sleep,
@@ -69,12 +70,10 @@ app.post('/api/entries', (req, res) => {
             notes: req.body.notes
         })
         .then(mood => {
-            return mood.save();
-        })
-        .then(mood => {
             res.status(201).json(mood);
         })
         .catch(error => {
+            console.log(error);
             res.status(500).json({message: 'Internal server error on post entry'});
         })
 });
