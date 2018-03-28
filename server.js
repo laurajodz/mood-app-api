@@ -45,9 +45,7 @@ app.use('/api/auth/', authRouter);
 
 app.use(bodyParser.json());
 
-app.use('*', (req, res) => {
-  return res.status(404).json({ message: 'Not Found' });
-});
+
 
 app.get('/api/entries', (req, res) => {
     Moods
@@ -62,9 +60,10 @@ app.get('/api/entries', (req, res) => {
 });
 
 app.post('/api/entries', (req, res) => {
+    console.log(req.body);
     Moods
         .create({
-            date: req.body.date,
+            date: req.body.date || Date.now(),
             mood: req.body.mood,
             moodTypes: req.body.moodTypes,
             sleep: req.body.sleep,
@@ -73,12 +72,10 @@ app.post('/api/entries', (req, res) => {
             notes: req.body.notes
         })
         .then(mood => {
-            return mood.save();
-        })
-        .then(mood => {
             res.status(201).json(mood);
         })
         .catch(error => {
+            console.log(error);
             res.status(500).json({message: 'Internal server error on post entry'});
         })
 });
@@ -109,6 +106,10 @@ app.get('/api/protected', jwtAuth, (req, res) => {
 
 app.get('/api/*', (req, res) => {
     res.json([]);
+});
+
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Not Found' });
 });
 
 let server;
