@@ -45,10 +45,21 @@ app.use('/api/auth/', authRouter);
 
 app.use(bodyParser.json());
 
+app.get('/api/entries/:id', (req, res) => {
+    Moods
+      .findById(req.params.id)
+      .then(moods => {
+          res.json(moods);
+      })
+      .catch(error => {
+          res.status(500).json({message: 'Internal server error on get entries'});
+      })
+});
+
 app.get('/api/entries', (req, res) => {
     Moods
       .find()
-      .sort({date: 1})
+      .sort({date: -1})
       .then(moods => {
           res.json(moods);
       })
